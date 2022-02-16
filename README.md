@@ -2,7 +2,7 @@ Dreambot-script-collection
 
 list of the scripst & description:
 
-- cCCcooking: this buys and then cooks chickens and then salmon (i think) ive only ever run this for like 40 minutes to get lvl (whatever the karambwan req is)
+-cCCcooking: this buys and then cooks chickens and then salmon (i think) ive only ever run this for like 40 minutes to get lvl (whatever the karambwan req is)
 
 -cCFiremaking: this cuts oaks at the ge and then lights them, this might stop after 30 firemaking im not sure
 
