@@ -13,5 +13,7 @@ list of the scripst & description:
 -cCNatureRuneGrabber: this telegrabs nature runes in the wildy, iirc the world hopping needs fixing it checks for nature runes before the world has fully loaded which causes it to hop again, it also needs to be refactored to taskscript & handle other players, this was the first script i wrote.
 
 -cCfiller: https://dreambot.org/forums/index.php?/topic/23059-f2p72k-gphr-camalcasefiller-fills-jugs-buckets-bowls-vials/
+
 -cCShopper: https://dreambot.org/forums/index.php?/topic/23758-camalcaseshopper-buys-items-for-you/
+
 -cCSplasher: https://dreambot.org/forums/index.php?/topic/23047-camalcasesplasher/
