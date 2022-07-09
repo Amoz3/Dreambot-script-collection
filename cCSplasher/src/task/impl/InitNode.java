@@ -50,7 +50,6 @@ public class InitNode extends AbstractTask {
         if (config.getBestSpell() != null) {
             config.setInitialised(true);
         }
-        sleep(100);
-        return 0;
+        return 100;
     }
 }

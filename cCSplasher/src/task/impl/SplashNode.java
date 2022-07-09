@@ -1,14 +1,18 @@
 package task.impl;
 
+import org.dreambot.api.input.Mouse;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.combat.Combat;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.magic.Magic;
 import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.interactive.NPC;
 import task.AbstractTask;
 
 public class SplashNode extends AbstractTask {
+    private Timer afkTimer = new Timer();
+
     @Override
     public boolean accept() {
         return config.isInitialised();
@@ -30,14 +34,12 @@ public class SplashNode extends AbstractTask {
                     // splashing code
                     NPC seagull = NPCs.closest(s -> s != null && s.getName().equals("Seagull") && !s.isInCombat() && !s.isHealthBarVisible());
                     if (seagull != null) {
-                        if (!getLocalPlayer().isInCombat()) {
+                        if (!getLocalPlayer().isInCombat() || afkTimer.elapsed() > (1000 * 60 * 18)) { // 18 min
                             seagull.interact("Attack");
+                            afkTimer.reset();
                         } else {
-                            if (Calculations.random(1, 20) == 3) {
-                                // 1/20 chance ever 30-38.2 seconds player will reattack seagull, to avoid the 20 minute stop attacking thing
-                                log("clicking...");
-                                getLocalPlayer().getCharacterInteractingWithMe().interact("Attack");
-                                sleepUntil(() -> !getLocalPlayer().isInCombat(), Calculations.random(30000, 38200));
+                            if (Mouse.isMouseInScreen()) {
+                                Mouse.moveMouseOutsideScreen();
                             }
                         }
                     }
@@ -56,7 +58,6 @@ public class SplashNode extends AbstractTask {
                 }
             }
         }
-            sleep(1000);
-            return 0;
+            return 1000;
     }
 }
