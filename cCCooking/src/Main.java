@@ -1,6 +1,8 @@
 import config.Config;
 import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
+import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.methods.walking.pathfinding.impl.obstacle.impl.PassableObstacle;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
@@ -37,8 +39,10 @@ public class Main extends TaskScript {
 
     @Override
     public void onStart() {
-        addNodes(new BuyRawFood(), new BankFood(), new Cook());
+        Walking.getAStarPathFinder().addObstacle(new PassableObstacle("Gate", "Open", null, null, null));
+        Walking.getAStarPathFinder().addObstacle(new PassableObstacle("Door", "Open", null, null, null));
 
+        addNodes(new BuyRawFood(), new BankFood(), new Cook());
     }
 
     public void onPaint(Graphics g) {

@@ -41,12 +41,9 @@ public class Cook extends AbstractTask {
     @Override
     public int execute() {
         config.setStatus("Cooking...");
-        Walking.getAStarPathFinder().addObstacle(new PassableObstacle("Gate", "Open", null, null, null));
-        Walking.getAStarPathFinder().addObstacle(new PassableObstacle("Door", "Open", null, null, null));
         if (RANGE.contains(getLocalPlayer())) {
             GameObject stove = GameObjects.closest("Stove");
-            if (stove != null) {
-                stove.interact("Cook");
+            if (stove != null && stove.interact("Cook")) {
                 sleepUntil(ItemProcessing::isOpen, 5000);
                 if (ItemProcessing.isOpen()) {
                     sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
