@@ -43,20 +43,23 @@ public class Cook extends AbstractTask {
         config.setStatus("Cooking...");
         if (RANGE.contains(getLocalPlayer())) {
             GameObject stove = GameObjects.closest("Stove");
+            if (ItemProcessing.isOpen()) {
+                sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
+                // when you have only raw chickens, it says make raw chickens but when you have a cooked one it says make cooked, this is important for when you get leveled up
+                if (ItemProcessing.makeAll(config.getCookedFood())) { // when you have only raw chickens, it says make raw chickens
+                    sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
+                    sleepUntil(() -> !Inventory.contains(config.getRawFood()) || Dialogues.canContinue(), 30000);
+                } else {
+                    ItemProcessing.makeAll(config.getRawFood());
+                    sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
+                    sleepUntil(() -> !Inventory.contains(config.getRawFood()) || Dialogues.canContinue(), 30000);
+                }
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
+            }
+
             if (stove != null && stove.interact("Cook")) {
                 sleepUntil(ItemProcessing::isOpen, 5000);
-                if (ItemProcessing.isOpen()) {
-                    sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                    // when you have only raw chickens, it says make raw chickens but when you have a cooked one it says make cooked, this is important for when you get leveled up
-                    if (ItemProcessing.makeAll(config.getCookedFood())) { // when you have only raw chickens, it says make raw chickens
-                        sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                        sleepUntil(() -> !Inventory.contains(config.getRawFood()) || Dialogues.canContinue(), 30000);
-                    } else {
-                        ItemProcessing.makeAll(config.getRawFood());
-                        sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                        sleepUntil(() -> !Inventory.contains(config.getRawFood()) || Dialogues.canContinue(), 30000);
-                    }
-                }
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
             }
         } else {
             if (Walking.shouldWalk()) {
