@@ -50,21 +50,22 @@ public class BankFood extends AbstractTask {
             config.setRawFood("Raw salmon");
             config.setCookedFood("Salmon");
         }
+
         // deposits all items and withdraws raw food
-        if (EDGEBANK.contains(getLocalPlayer())) {
-            if (Bank.openClosest()) {
+        if (EDGEBANK.contains(getLocalPlayer()) && Bank.open()) {
+            if (!Inventory.isEmpty() && !Inventory.contains(config.getRawFood())) {
                 Bank.depositAllItems();
-                sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                if (Bank.contains(config.getRawFood())) {
-                    sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                    Bank.withdrawAll(config.getRawFood());
-                    sleep(Calculations.random(config.getSleepLow(), config.getSleepHigh()));
-                    Bank.close();
-                } else {
-                    config.setBuyFood(true);
-                    Bank.close();
-                }
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
             }
+            if (Bank.contains(config.getRawFood())) {
+                Bank.withdrawAll(config.getRawFood());
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
+            } else {
+                config.setBuyFood(true);
+                Bank.close();
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
+            }
+
         } else {
             if (Walking.shouldWalk()){
                 if (!Walking.isRunEnabled()) {
@@ -78,3 +79,5 @@ public class BankFood extends AbstractTask {
         return 400;
     }
 }
+
+
