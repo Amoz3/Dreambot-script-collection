@@ -32,10 +32,10 @@ public class Fill extends AbstractTask {
         config.setStatus("Filling empty " + config.getContainer());
         Item emptyContainer = Inventory.get(config.getContainer());
         if (emptyContainer != null) {
-            GameObject waterpump = GameObjects.closest("Waterpump");
             if (!Walking.isRunEnabled()) {
                 Walking.toggleRun();
             }
+            GameObject waterpump = GameObjects.closest("Waterpump");
             if (waterpump != null && emptyContainer.useOn(waterpump)) {
                 sleepUntil(() -> !Inventory.contains(config.getContainer()), 35000);
             }
