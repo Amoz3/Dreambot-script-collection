@@ -3,6 +3,7 @@ package task.impl;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
+import org.dreambot.api.methods.container.impl.bank.BankMode;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
@@ -53,6 +54,9 @@ public class BankFood extends AbstractTask {
 
         // deposits all items and withdraws raw food
         if (EDGEBANK.contains(getLocalPlayer()) && Bank.open()) {
+            if (!Bank.getWithdrawMode().equals(BankMode.ITEM) && Bank.setWithdrawMode(BankMode.ITEM)) {
+                return Calculations.random(config.getSleepLow(), config.getSleepHigh());
+            }
             if (!Inventory.isEmpty() && !Inventory.contains(config.getRawFood())) {
                 Bank.depositAllItems();
                 return Calculations.random(config.getSleepLow(), config.getSleepHigh());
