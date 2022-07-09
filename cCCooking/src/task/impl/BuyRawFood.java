@@ -86,6 +86,6 @@ public class BuyRawFood extends AbstractTask {
                 Walking.walk(GE.getRandomTile());
             }
         }
-        return 0;
+        return 400;
     }
 }

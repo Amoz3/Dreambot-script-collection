@@ -75,7 +75,6 @@ public class BankFood extends AbstractTask {
                 Walking.walk(EDGEBANK.getRandomTile());
             }
         }
-        sleep(400);
-        return 0;
+        return 400;
     }
 }

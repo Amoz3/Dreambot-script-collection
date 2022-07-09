@@ -71,7 +71,6 @@ public class Cook extends AbstractTask {
                 Walking.walk(RANGE.getRandomTile());
             }
         }
-        sleep(1000);
-        return 0;
+        return 1000;
     }
 }
