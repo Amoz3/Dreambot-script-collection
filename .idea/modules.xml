@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Dreambot-script-collection.iml" filepath="$PROJECT_DIR$/.idea/Dreambot-script-collection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCCooking/cCCooking.iml" filepath="$PROJECT_DIR$/cCCooking/cCCooking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCFiller/cCFiller.iml" filepath="$PROJECT_DIR$/cCFiller/cCFiller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCFireMaking/cCFireMaking.iml" filepath="$PROJECT_DIR$/cCFireMaking/cCFireMaking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCKarambwan/cCKarambwan.iml" filepath="$PROJECT_DIR$/cCKarambwan/cCKarambwan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCNatureRuneGrabber/cCNatureRuneGrabber.iml" filepath="$PROJECT_DIR$/cCNatureRuneGrabber/cCNatureRuneGrabber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCShopper/cCShopper.iml" filepath="$PROJECT_DIR$/cCShopper/cCShopper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCSplasher/cCSplasher.iml" filepath="$PROJECT_DIR$/cCSplasher/cCSplasher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cCTinderBoxes/cCTinderBoxes.iml" filepath="$PROJECT_DIR$/cCTinderBoxes/cCTinderBoxes.iml" />
+    </modules>
+  </component>
+</project>

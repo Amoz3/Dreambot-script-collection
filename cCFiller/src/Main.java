@@ -35,14 +35,10 @@ public class Main extends TaskScript {
     //FOR PAINT
     Image image;
     Config config = Config.getConfig();
-    private long timeBegan;
-    private long timeRan;
+    private final Timer runtime = new Timer();
 
-
-    private int gpGained;
 
     private int totalGpPerHour;
-    private int gpPerHour;
     DecimalFormat df = new DecimalFormat("#");
 
     @Override
@@ -62,11 +58,9 @@ public class Main extends TaskScript {
         } catch (IOException e) {
             log("failed to load img");
         }
-        timeBegan = System.currentTimeMillis();
     }
 
     public void onPaint(Graphics g) {
-        timeRan = System.currentTimeMillis() - this.timeBegan;
         if (image != null) {
             g.drawImage(image, 0 , 335, null);
         } else {
@@ -75,55 +69,15 @@ public class Main extends TaskScript {
         }
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 16));
-        g.drawString("Time ran: " + ft(timeRan), 10, 365);
+        g.drawString("Time ran: " + runtime.formatTime(), 10, 365);
         g.drawString(config.getStatus(), 10, 385);
 
         // GP PER HOUR
-        gpGained = config.getAmountFilled() * config.getProfit();
-        gpPerHour = (int)(gpGained / ((System.currentTimeMillis() - timeBegan) / 3600000.0D));
+        int gpGained = config.getAmountFilled() * config.getProfit();
+        int gpPerHour = (int) (gpGained / runtime.elapsed());
 
         g.drawString("GP MADE: " + gpGained, 10, 405);
         g.drawString("GP/HOUR: " + df.format((gpPerHour) / 1000) + "K" , 10, 425);
 
     }
-
-
-    private String ft(long duration)
-
-    {
-
-        String res = "";
-
-        long days = TimeUnit.MILLISECONDS.toDays(duration);
-
-        long hours = TimeUnit.MILLISECONDS.toHours(duration)
-
-                - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(duration));
-
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration)
-
-                - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS
-
-                .toHours(duration));
-
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration)
-
-                - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS
-
-                .toMinutes(duration));
-
-        if (days == 0) {
-
-            res = (hours + ":" + minutes + ":" + seconds);
-
-        } else {
-
-            res = (days + ":" + hours + ":" + minutes + ":" + seconds);
-
-        }
-
-        return res;
-
-    }
-
 }
