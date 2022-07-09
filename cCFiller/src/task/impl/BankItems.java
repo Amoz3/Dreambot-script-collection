@@ -51,7 +51,6 @@ public class BankItems extends AbstractTask {
                 Walking.walk(FALLY_BANK.getRandomTile());
             }
         }
-        sleep(500);
-        return 0;
+        return 500;
     }
 }

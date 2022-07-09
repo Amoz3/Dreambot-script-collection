@@ -74,6 +74,7 @@ public class Main extends TaskScript {
 
         // GP PER HOUR
         int gpGained = config.getAmountFilled() * config.getProfit();
+        // 3600000.0D i didnt test if this works the same was but i think it will
         int gpPerHour = (int) (gpGained / runtime.elapsed());
 
         g.drawString("GP MADE: " + gpGained, 10, 405);

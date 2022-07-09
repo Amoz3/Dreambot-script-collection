@@ -1,11 +1,13 @@
 package task.impl;
 
+import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import task.AbstractTask;
+
 /**
  * @author camalCase
  * @version 1
@@ -34,12 +36,10 @@ public class Fill extends AbstractTask {
             if (!Walking.isRunEnabled()) {
                 Walking.toggleRun();
             }
-            if (waterpump != null) {
-                if (emptyContainer.useOn(waterpump)) {
-                    sleepUntil(() -> !Inventory.contains(config.getContainer()), 35000);
-                }
+            if (waterpump != null && emptyContainer.useOn(waterpump)) {
+                sleepUntil(() -> !Inventory.contains(config.getContainer()), 35000);
             }
         }
-        return 0;
-        }
+        return Calculations.random(200, 600);
     }
+}
